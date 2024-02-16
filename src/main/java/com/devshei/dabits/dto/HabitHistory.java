@@ -12,7 +12,6 @@ import java.sql.Date;
 @NoArgsConstructor
 @Builder
 public class HabitHistory {
-    private Long userId;
     private Long habitId;
     private Date habitDate;
     private int numericValue;
