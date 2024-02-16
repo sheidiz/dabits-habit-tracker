@@ -93,7 +93,7 @@ public class UserServiceImplTest {
     @Test
     public void testDeleteCategoryDeletesCategory() {
         final Long id = 1L;
-        underTest.deleteUseryById(id);
+        underTest.deleteUserById(id);
         verify(userRepository, times(1)).deleteById(eq(id));
     }
 

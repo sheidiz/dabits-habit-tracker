@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public boolean isUserExists(User user) {
         return userRepository.existsById(user.getId());
@@ -73,11 +72,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUseryById(Long id) {
+    public void deleteUserById(Long id) {
         try {
             userRepository.deleteById(id);
         } catch (final EmptyResultDataAccessException ex) {
-            log.debug("Attemped to delete non-existing user", ex);
+            log.debug("Attempted to delete non-existing user", ex);
         }
     }
 }
