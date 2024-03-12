@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/users/{id}")
-    public ResponseEntity<User> retrieveUser(@PathVariable final Long id) {
+    public ResponseEntity<User> getUser(@PathVariable final Long id) {
         final Optional<User> foundUser = userService.findById(id);
         return foundUser.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

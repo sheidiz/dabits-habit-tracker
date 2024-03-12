@@ -31,6 +31,10 @@ public class HabitHistoryServiceImpl implements HabitHistoryService {
         this.habitRepository = habitRepository;
     }
 
+    @Override
+    public boolean doesHabitHasHistory(Habit habit) {
+        return habitHistoryRepository.existsByHabit(habit);
+    }
 
     @Override
     public boolean isHabitHistoryExists(Habit habit, Date habitDate) {
@@ -69,6 +73,13 @@ public class HabitHistoryServiceImpl implements HabitHistoryService {
     }
 
     @Override
+    public Optional<HabitHistory> findByHabit(Habit habit) {
+        final Optional<HabitHistoryEntity> foundHabitHistory = habitHistoryRepository.findByHabit(habit);
+
+        return foundHabitHistory.map(this::habitHistoryEntityToHabitHistory);
+    }
+
+    @Override
     public List<HabitHistory> listHabitHistories() {
         final List<HabitHistoryEntity> foundHabitHistories = habitHistoryRepository.findAll();
 
@@ -79,9 +90,9 @@ public class HabitHistoryServiceImpl implements HabitHistoryService {
 
     @Override
     public void deleteHabitHistoryByHabitAndDate(Habit habit, Date habitDate) {
-        try{
+        try {
             habitHistoryRepository.deleteByHabitAndDate(habit, habitDate);
-        }catch (final EmptyResultDataAccessException ex){
+        } catch (final EmptyResultDataAccessException ex) {
             log.debug("Attempted to delete non-existing habit history", ex);
         }
     }

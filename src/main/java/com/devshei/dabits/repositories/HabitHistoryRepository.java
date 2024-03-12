@@ -11,9 +11,14 @@ import java.util.Optional;
 
 @Repository
 public interface HabitHistoryRepository extends JpaRepository<HabitHistoryEntity, Long> {
+
+    boolean existsByHabit(Habit habit);
+
     boolean existsByHabitAndHabitDate(Habit habit, Date habitDate);
 
     Optional<HabitHistoryEntity> findByHabitAndHabitDate(Habit habit, Date habitDate);
+
+    Optional<HabitHistoryEntity> findByHabit(Habit habit);
 
     void deleteByHabitAndDate(Habit habit, Date habitDate);
 }
