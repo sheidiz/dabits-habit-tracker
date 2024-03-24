@@ -78,16 +78,16 @@ public class UserServiceImplTest {
 
     @Test
     public void testUserExistsReturnsFalseWhenUserDoesntExists() {
-        when(userRepository.existsById(any())).thenReturn(false);
+        when(userRepository.existsByEmail(any())).thenReturn(false);
 
-        final boolean result = underTest.isUserExists(testUser());
+        final boolean result = underTest.isUserExistsByEmail(testUser().getEmail());
         assertFalse(result);
     }
     @Test
     public void testUserExistsReturnsTrueWhenUserDoesExists() {
-        when(userRepository.existsById(any())).thenReturn(true);
+        when(userRepository.existsByEmail(any())).thenReturn(true);
 
-        final boolean result = underTest.isUserExists(testUser());
+        final boolean result = underTest.isUserExistsByEmail(testUser().getEmail());
         assertTrue(result);
     }
     @Test

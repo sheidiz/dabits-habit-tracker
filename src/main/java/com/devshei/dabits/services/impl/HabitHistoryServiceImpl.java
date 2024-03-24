@@ -1,6 +1,5 @@
 package com.devshei.dabits.services.impl;
 
-import com.devshei.dabits.domain.HabitEntity;
 import com.devshei.dabits.domain.HabitHistoryEntity;
 import com.devshei.dabits.dto.Habit;
 import com.devshei.dabits.dto.HabitHistory;
@@ -66,7 +65,7 @@ public class HabitHistoryServiceImpl implements HabitHistoryService {
     }
 
     @Override
-    public Optional<HabitHistory> findByHabitAndDate(Habit habit, Date habitDate) {
+    public Optional<HabitHistory> findByHabitAndHabitDate(Habit habit, Date habitDate) {
         final Optional<HabitHistoryEntity> foundHabitHistory = habitHistoryRepository.findByHabitAndHabitDate(habit, habitDate);
 
         return foundHabitHistory.map(this::habitHistoryEntityToHabitHistory);
@@ -89,9 +88,9 @@ public class HabitHistoryServiceImpl implements HabitHistoryService {
     }
 
     @Override
-    public void deleteHabitHistoryByHabitAndDate(Habit habit, Date habitDate) {
+    public void deleteHabitHistoryByHabitAndHabitDate(Habit habit, Date habitDate) {
         try {
-            habitHistoryRepository.deleteByHabitAndDate(habit, habitDate);
+            habitHistoryRepository.deleteByHabitAndHabitDate(habit, habitDate);
         } catch (final EmptyResultDataAccessException ex) {
             log.debug("Attempted to delete non-existing habit history", ex);
         }

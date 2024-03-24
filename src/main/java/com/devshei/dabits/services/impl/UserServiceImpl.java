@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isUserExists(User user) {
-        return userRepository.existsById(user.getId());
+    public boolean isUserExistsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     @Override
@@ -40,7 +40,8 @@ public class UserServiceImpl implements UserService {
     private UserEntity userToUserEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
-                .username(user.getUsername())
+                .name(user.getName())
+                .email(user.getEmail())
                 .password(user.getPassword())
                 .role(user.getRole())
                 .createdAt(user.getCreatedAt())
@@ -50,7 +51,8 @@ public class UserServiceImpl implements UserService {
     private User userEntityToUser(UserEntity userEntity) {
         return User.builder()
                 .id(userEntity.getId())
-                .username(userEntity.getUsername())
+                .name(userEntity.getName())
+                .email(userEntity.getEmail())
                 .password(userEntity.getPassword())
                 .role(userEntity.getRole())
                 .createdAt(userEntity.getCreatedAt())
@@ -60,6 +62,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findById(Long id) {
         final Optional<UserEntity> foundUser = userRepository.findById(id);
+        return foundUser.map(this::userEntityToUser);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        final Optional<UserEntity> foundUser = userRepository.findByEmail(email);
         return foundUser.map(this::userEntityToUser);
     }
 

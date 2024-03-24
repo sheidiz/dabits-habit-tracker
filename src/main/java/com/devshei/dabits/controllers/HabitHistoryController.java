@@ -72,7 +72,7 @@ public class HabitHistoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        final Optional<HabitHistory> foundHabitHistory = habitHistoryService.findByHabitAndDate(habitOptional.get(), habitDate);
+        final Optional<HabitHistory> foundHabitHistory = habitHistoryService.findByHabitAndHabitDate(habitOptional.get(), habitDate);
         return foundHabitHistory.map(habitHistory -> new ResponseEntity<>(habitHistory, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

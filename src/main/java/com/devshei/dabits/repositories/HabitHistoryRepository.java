@@ -2,7 +2,6 @@ package com.devshei.dabits.repositories;
 
 import com.devshei.dabits.domain.HabitHistoryEntity;
 import com.devshei.dabits.dto.Habit;
-import com.devshei.dabits.dto.HabitHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +19,6 @@ public interface HabitHistoryRepository extends JpaRepository<HabitHistoryEntity
 
     Optional<HabitHistoryEntity> findByHabit(Habit habit);
 
-    void deleteByHabitAndDate(Habit habit, Date habitDate);
+    void deleteByHabitAndHabitDate(Habit habit, Date habitDate);
+
 }

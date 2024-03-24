@@ -14,12 +14,12 @@ public interface HabitHistoryService {
     boolean isHabitHistoryExists(Habit habit, Date habitDate);
     HabitHistory saveHabitHistory(HabitHistory habitHistory);
 
-    Optional<HabitHistory> findByHabitAndDate(Habit habit, Date habitDate);
+    Optional<HabitHistory> findByHabitAndHabitDate(Habit habit, Date habitDate);
 
     Optional<HabitHistory> findByHabit(Habit habit);
 
     List<HabitHistory> listHabitHistories();
 
-    void deleteHabitHistoryByHabitAndDate(Habit habit, Date habitDate);
+    void deleteHabitHistoryByHabitAndHabitDate(Habit habit, Date habitDate);
 
 }
